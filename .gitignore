@@ -1,0 +1,14 @@
+data/
+outputs/
+logs/
+results/
+__pycache__/
+.idea
+*/.ipynb_checkpoints
+*.tc.*
+*.tc_backward.*
+*.log
+*.bak
+.bash_history
+.dotnet/
+.vscode-server/
