@@ -48,12 +48,10 @@ class GatConv(MessagePassing):
         x = torch.cat([x_i, x_j, edge_attr], dim=-1)
         alpha = self.attn(x)
         alpha = F.leaky_relu(alpha, self.negative_slope)
-        print(alpha)
-        alpha = softmax(alpha, edge_index_i, size_i)
+        alpha = softmax(src=alpha, index=edge_index_i, num_nodes=size_i)
 
         # Sample attention coefficients stochastically.
         alpha = F.dropout(alpha, p=self.dropout, training=self.training)
-
         return x_j * alpha
 
     def update(self, aggr_out):
@@ -348,7 +346,6 @@ class Critic(nn.Module):
         output = F.relu(self.fc1(x1))
         output = F.relu(self.fc2(output))
         value = self.fc3(output).sum(dim=2).squeeze(-1)
-        print(value)
         return value
 
 

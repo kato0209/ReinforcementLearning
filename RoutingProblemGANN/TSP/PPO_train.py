@@ -100,7 +100,7 @@ class TrainPPO:
             if not os.path.exists(epoch_dir):
                 os.makedirs(epoch_dir)
             save_path = os.path.join(epoch_dir, 'actor.pt')
-            torch.save(self.agent.old_polic.state_dict(), save_path)
+        torch.save(self.agent.old_polic.state_dict(), save_path)
 def train():
     class RunBuilder():
         @staticmethod
@@ -122,8 +122,8 @@ def train():
         eps_clip=[0.2],
         timestep=[1],
         ppo_epoch=[3],
-        data_size=[512000],
-        valid_size=[10000]
+        data_size=[512],
+        valid_size=[10]
     )
     runs = RunBuilder.get_runs(params)
 
